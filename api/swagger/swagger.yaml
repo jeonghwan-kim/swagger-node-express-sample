@@ -2,6 +2,14 @@ swagger: "2.0"
 info:
   version: "0.0.1"
   title: Hello World App
+
+securityDefinitions:
+  api_key:
+    type: apiKey
+    in: query
+    name: api_key
+security:
+  - api_key: [  ]    
 # during dev, should point to your local machine
 host: localhost:10010
 # basePath prefixes all resource paths 

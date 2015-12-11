@@ -6,7 +6,20 @@ var app = require('express')();
 module.exports = app; // for testing
 
 var config = {
-  appRoot: __dirname // required config
+  // required config
+  appRoot: __dirname,
+
+  // api_key
+  swaggerSecurityHandlers: {
+    api_key: function (req, authOrSecDef, scopesOrApiKey, cb) {
+      // your security code
+      if ('1234' === scopesOrApiKey) {
+        cb();
+      } else {
+        cb(new Error('access denied!'));
+      }
+    }
+  }
 };
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
